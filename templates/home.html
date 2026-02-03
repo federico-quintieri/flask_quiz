@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Home Page</h1>
+
+<form method="post">
+    <input name="city" placeholder="Inserisci città" required>
+    <button>Mostra meteo</button>
+</form>
+
+{% if weather %}
+    <h3>Meteo per i prossimi 3 giorni</h3>
+    <table border="1">
+        <tr>
+            <th>Giorno</th>
+            <th>Temperatura Giorno (°C)</th>
+            <th>Temperatura Notte (°C)</th>
+        </tr>
+        {% for day in weather %}
+        <tr>
+            <td>{{ day.day }}</td>
+            <td>{{ day.temp_day }}</td>
+            <td>{{ day.temp_night }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}

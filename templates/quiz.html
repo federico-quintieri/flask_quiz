@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Quiz</h2>
+<p>Punteggio totale: {{ score }}</p>
+
+<form method="post">
+    <p>{{ question.question }}</p>
+    <input type="radio" name="answer" value="1" required> {{ question.option1 }}<br>
+    <input type="radio" name="answer" value="2" required> {{ question.option2 }}<br>
+    <input type="radio" name="answer" value="3" required> {{ question.option3 }}<br>
+    <input type="radio" name="answer" value="4" required> {{ question.option4 }}<br>
+    <input type="hidden" name="question_id" value="{{ question.id }}">
+    <button>Invia</button>
+</form>
+
+{% endblock %}

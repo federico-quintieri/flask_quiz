@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Classifica</h2>
+
+<table border="1">
+    <tr>
+        <th>Posizione</th>
+        <th>Nickname</th>
+        <th>Punteggio</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ loop.index }}</td> {# numero della riga, parte da 1 #}
+        <td>{{ user.nickname }}</td>
+        <td>{{ user.score }}</td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+{% endblock %}
