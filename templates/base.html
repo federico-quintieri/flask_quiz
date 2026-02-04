@@ -20,6 +20,7 @@
 
                 {% if current_user.is_authenticated %}
                 <a href="{{ url_for('quiz.quiz') }}" class="hover:underline">Quiz</a>
+                <a href="{{ url_for('quiz.leaderboard')}}" class="hover:underline">Leaderboard</a>
                 <a href="{{ url_for('auth.logout') }}" class="hover:underline">Logout</a>
                 {% else %}
                 <a href="{{ url_for('auth.login') }}" class="hover:underline">Login</a>
@@ -27,12 +28,7 @@
                 {% endif %}
             </div>
 
-            <!-- Saluto utente a destra -->
-            <div class="ml-6">
-                {% if current_user.is_authenticated %}
-                <span class="font-semibold">Ciao, {{ current_user.nickname }}!</span>
-                {% endif %}
-            </div>
+
 
         </nav>
     </header>
@@ -47,7 +43,13 @@
 
     <!-- FOOTER -->
     <footer class="bg-gray-200 text-gray-700 p-4 text-center">
-        Sviluppato da Federico Quintieri
+        <div class="ml-6">
+            Sviluppato da <span class="font-bold">Federico Quintieri </span>-
+            {% if current_user.is_authenticated %}
+            <span>Utente loggato: </span>
+            <span class="font-semibold">{{ current_user.nickname }}</span>
+            {% endif %}
+        </div>
     </footer>
 
 </body>

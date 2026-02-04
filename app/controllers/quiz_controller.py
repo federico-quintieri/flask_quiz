@@ -4,7 +4,6 @@ from app.services.quiz_service import fetch_random_question, check_answer
 
 quiz_bp = Blueprint("quiz", __name__, url_prefix="/quiz")
 
-
 @quiz_bp.route("/", methods=["GET", "POST"])
 @login_required
 def quiz():
@@ -22,10 +21,8 @@ def quiz():
         result=result,
     )
 
-
 @quiz_bp.route("/leaderboard")
 def leaderboard():
     from app.models import User
-
     users = User.query.order_by(User.score.desc()).all()
     return render_template("leaderboard.html", users=users)
