@@ -13,5 +13,5 @@ class Quiz(db.Model):
     answer_a = db.Column(db.String(255), nullable=False)
     answer_b = db.Column(db.String(255), nullable=False)
     answer_c = db.Column(db.String(255), nullable=False)
-    answer_d = db.Column(db.String(255), nullable=False)  # nuova opzione
+    answer_d = db.Column(db.String(255), nullable=False) 
     correct = db.Column(db.Integer, nullable=False)

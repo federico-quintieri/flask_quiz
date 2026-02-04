@@ -1,17 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2>Quiz</h2>
-<p>Punteggio totale: {{ score }}</p>
+<div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-md">
+    <form method="POST" class="space-y-4">
+        <p class="text-lg font-semibold text-gray-800">{{ question.question }}</p>
+        <input type="hidden" name="question_id" value="{{ question.id }}">
 
-<form method="post">
-    <p>{{ question.question }}</p>
-    <input type="radio" name="answer" value="1" required> {{ question.answer_a }}<br>
-    <input type="radio" name="answer" value="2" required> {{ question.answer_b }}<br>
-    <input type="radio" name="answer" value="3" required> {{ question.answer_c }}<br>
-    <input type="radio" name="answer" value="4" required> {{ question.answer_d }}<br>
-    <input type="hidden" name="question_id" value="{{ question.id }}">
-    <button>Invia</button>
-</form>
+        <div class="flex flex-col space-y-2">
+            <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-100 cursor-pointer">
+                <input type="radio" name="answer" value="1" required class="accent-blue-500">
+                <span>{{ question.answer_a }}</span>
+            </label>
+
+            <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-100 cursor-pointer">
+                <input type="radio" name="answer" value="2" required class="accent-blue-500">
+                <span>{{ question.answer_b }}</span>
+            </label>
+
+            <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-100 cursor-pointer">
+                <input type="radio" name="answer" value="3" required class="accent-blue-500">
+                <span>{{ question.answer_c }}</span>
+            </label>
+
+            <label class="flex items-center space-x-2 p-2 border rounded hover:bg-gray-100 cursor-pointer">
+                <input type="radio" name="answer" value="4" required class="accent-blue-500">
+                <span>{{ question.answer_d }}</span>
+            </label>
+        </div>
+
+        <button type="submit"
+            class="w-full py-2 bg-blue-600 text-white font-semibold rounded hover:bg-blue-700 transition">
+            Invia
+        </button>
+    </form>
+
+    {% if result is not none %}
+    <p class="mt-4 font-semibold {% if result %}text-green-600{% else %}text-red-600{% endif %}">
+        {% if result %}Corretto!{% else %}Sbagliato!{% endif %}
+    </p>
+    {% endif %}
+
+    <p class="mt-2 text-gray-700 font-medium">Punteggio: {{ score }}</p>
+</div>
+
 
 {% endblock %}
