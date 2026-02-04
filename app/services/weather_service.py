@@ -1,7 +1,11 @@
 import requests
 from datetime import datetime
+from dotenv import load_dotenv
+import os
 
-API_KEY = "223083a5fe10974ce94a87a634656dd5"  # metti la tua chiave qui
+load_dotenv()
+
+API_KEY = os.getenv("API_KEY")
 
 
 def fetch_weather(city: str, days: int = 3):
