@@ -1,29 +1,41 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Home Page</h1>
-
-<form method="post">
-    <input name="city" placeholder="Inserisci città" required>
-    <button>Mostra meteo</button>
+<form method="post" class="flex justify-center gap-3 mb-8">
+    <input name="city" placeholder="Inserisci città" required
+        class="w-64 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+    <button class="px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+        Mostra meteo
+    </button>
 </form>
 
 {% if weather %}
-    <h3>Meteo per i prossimi 3 giorni</h3>
-    <table border="1">
-        <tr>
-            <th>Giorno</th>
-            <th>Temperatura Giorno (°C)</th>
-            <th>Temperatura Notte (°C)</th>
-        </tr>
-        {% for day in weather %}
-        <tr>
-            <td>{{ day.day }}</td>
-            <td>{{ day.temp_day }}</td>
-            <td>{{ day.temp_night }}</td>
-        </tr>
-        {% endfor %}
+<h3 class="text-xl font-semibold text-center mb-4">
+    Meteo per i prossimi 3 giorni a {{city}}
+</h3>
+
+<div class="overflow-x-auto">
+    <table class="w-full border border-gray-200 rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="px-4 py-2 text-left">Data</th>
+                <th class="px-4 py-2 text-center">Giorno</th>
+                <th class="px-4 py-2 text-center">Temp. Giorno (°C)</th>
+                <th class="px-4 py-2 text-center">Temp. Notte (°C)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for day in weather %}
+            <tr class="border-t">
+                <td class="px-4 py-2">{{day.date}}</td>
+                <td class="px-4 py-2 text-center">{{ day.day }}</td>
+                <td class="px-4 py-2 text-center">{{ day.temp_day }}</td>
+                <td class="px-4 py-2 text-center">{{ day.temp_night }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
+</div>
 {% endif %}
 
 {% endblock %}

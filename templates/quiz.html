@@ -6,10 +6,10 @@
 
 <form method="post">
     <p>{{ question.question }}</p>
-    <input type="radio" name="answer" value="1" required> {{ question.option1 }}<br>
-    <input type="radio" name="answer" value="2" required> {{ question.option2 }}<br>
-    <input type="radio" name="answer" value="3" required> {{ question.option3 }}<br>
-    <input type="radio" name="answer" value="4" required> {{ question.option4 }}<br>
+    <input type="radio" name="answer" value="1" required> {{ question.answer_a }}<br>
+    <input type="radio" name="answer" value="2" required> {{ question.answer_b }}<br>
+    <input type="radio" name="answer" value="3" required> {{ question.answer_c }}<br>
+    <input type="radio" name="answer" value="4" required> {{ question.answer_d }}<br>
     <input type="hidden" name="question_id" value="{{ question.id }}">
     <button>Invia</button>
 </form>
