@@ -4,24 +4,33 @@ from app.services.auth_service import register_user, login_user_service
 
 auth_bp = Blueprint("auth", __name__)
 
+
 @auth_bp.route("/register", methods=["GET", "POST"])
 def register():
+    error = None
     if request.method == "POST":
-        msg = register_user(request.form)
-        if msg != "ok":
-            return msg
-        return redirect(url_for("auth.login"))
-    return render_template("register.html")
+        result = register_user(request.form)
+        if result != "ok":
+            error = result
+        else:
+            # redirect a login
+            return redirect(url_for("auth.login"))
+
+    return render_template("register.html", error=error)
+
 
 @auth_bp.route("/login", methods=["GET", "POST"])
 def login():
+    error = None
     if request.method == "POST":
-        user = login_user_service(request.form)
-        if user:
-            login_user(user)
+        result = login_user_service(request.form)
+        if isinstance(result, str):
+            error = result
+        else:
+            login_user(result)
             return redirect(url_for("weather.home"))
-        return "Credenziali errate"
-    return render_template("login.html")
+
+    return render_template("login.html", error=error)
 
 @auth_bp.route("/logout")
 @login_required

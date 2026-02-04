@@ -12,18 +12,31 @@
 
     <!-- NAVBAR IN ALTO -->
     <header class="bg-blue-600 text-white">
-        <nav class="max-w-6xl mx-auto px-6 py-4 flex space-x-6 justify-center">
-            <a href="{{ url_for('weather.home') }}" class="hover:underline">Home</a>
+        <nav class="max-w-3xl mx-auto px-6 py-4 flex justify-between items-center">
 
-            {% if current_user.is_authenticated %}
-            <a href="{{ url_for('quiz.quiz') }}" class="hover:underline">Quiz</a>
-            <a href="{{ url_for('auth.logout') }}" class="hover:underline">Logout</a>
-            {% else %}
-            <a href="{{ url_for('auth.login') }}" class="hover:underline">Login</a>
-            <a href="{{ url_for('auth.register') }}" class="hover:underline">Registrazione</a>
-            {% endif %}
+            <!-- Menu centrale -->
+            <div class="flex space-x-6 ">
+                <a href="{{ url_for('weather.home') }}" class="hover:underline">Home</a>
+
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('quiz.quiz') }}" class="hover:underline">Quiz</a>
+                <a href="{{ url_for('auth.logout') }}" class="hover:underline">Logout</a>
+                {% else %}
+                <a href="{{ url_for('auth.login') }}" class="hover:underline">Login</a>
+                <a href="{{ url_for('auth.register') }}" class="hover:underline">Registrazione</a>
+                {% endif %}
+            </div>
+
+            <!-- Saluto utente a destra -->
+            <div class="ml-6">
+                {% if current_user.is_authenticated %}
+                <span class="font-semibold">Ciao, {{ current_user.nickname }}!</span>
+                {% endif %}
+            </div>
+
         </nav>
     </header>
+
 
     <!-- CONTENUTO CENTRALE -->
     <main class="flex-1 flex justify-center items-start p-6">
